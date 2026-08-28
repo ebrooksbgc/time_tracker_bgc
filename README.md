@@ -26,49 +26,122 @@ the same weekly timesheet. Timestamps are
 stored in UTC and displayed in the configured local timezone; entries that
 cross midnight are split correctly in reports.
 
-## Requirements
+## Set up the app on Windows
 
-- Python 3.11 or newer
-- A supported desktop browser
+These instructions are written for someone who does not normally work with
+Python or developer tools. Setup usually takes a few minutes and only needs to
+be completed once.
 
-SQLite is included with Python, so no separate database service is required for
-local use.
+### 1. Install Python
 
-## Quick start
+1. Download Python from <https://www.python.org/downloads/windows/>. Use Python
+   3.11 or newer.
+2. Open the downloaded installer.
+3. On the first installer screen, select **Add python.exe to PATH**, and then
+   choose **Install Now**.
+4. Finish the installation before continuing.
 
-### Windows PowerShell
+You do not need to install a separate database. The app uses SQLite, which is
+included with Python.
+
+### 2. Download and open the project folder
+
+1. Open the project's GitHub page:
+   <https://github.com/ebrooksbgc/time_tracker_bgc>.
+2. Select the green **Code** button, and then select **Download ZIP**.
+3. Open your Downloads folder, right-click the downloaded ZIP file, and select
+   **Extract All**.
+4. Open the extracted `time_tracker_bgc` folder. Confirm that you can see
+   `app.py` and `requirements.txt` in it.
+5. Click the File Explorer address bar, type `powershell`, and press **Enter**.
+   A blue PowerShell window will open in the correct folder.
+
+Keep the project in this folder after setup. The app saves its local data there.
+
+### 3. Install the app
+
+Copy each command below into the PowerShell window and press **Enter** after
+each one. Let each command finish before starting the next command.
 
 ```powershell
-git clone git@github.com:ebrooksbgc/time_tracker_bgc.git
-cd time_tracker
 py -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-python -m streamlit run app.py
+.\.venv\Scripts\python.exe -m pip install --upgrade pip
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
-### macOS or Linux
+The installation may take a few minutes. Lines of text appearing in the window
+are normal.
+
+### 4. Start the app
+
+In the same PowerShell window, run:
+
+```powershell
+.\.venv\Scripts\python.exe -m streamlit run app.py
+```
+
+Your browser should open the Time Tracker automatically. If it does not, open
+<http://localhost:8501> yourself. Keep the PowerShell window open while using
+the app. Closing it stops the app.
+
+On first launch, the application creates a local `time_tracker.db` file in the
+project folder. This file contains the information saved in your local copy of
+the app.
+
+### 5. Import the example partners and projects
+
+1. In the web app, select **Setup** from the main navigation.
+2. Under **Reference data**, click **Import official hackathon workbook**.
+3. Wait for the import summary to appear. It will report the partners,
+   projects, tasks, assignments, and fiscal periods that were added.
+4. Select an example partner from **Work as partner** and begin using the app.
+
+The button imports data from `IT Hackathon Workbook.xlsx`, which is already in
+the project folder. You do not need to open or upload the workbook yourself.
+
+## Start the app again later
+
+1. Open the extracted `time_tracker_bgc` folder in File Explorer.
+2. Click the address bar, type `powershell`, and press **Enter**.
+3. Run:
+
+```powershell
+.\.venv\Scripts\python.exe -m streamlit run app.py
+```
+
+The app will use the same local database, so previously saved work will still
+be available. To stop the app, close the PowerShell window or press **Ctrl+C**
+in that window.
+
+## Common setup problems
+
+- **`py` is not recognized:** Restart the computer after installing Python. If
+  the problem continues, reinstall Python and select **Add python.exe to PATH**.
+- **PowerShell says that `requirements.txt` or `app.py` cannot be found:** The
+  PowerShell window is open in the wrong folder. Return to the folder containing
+  `app.py`, type `powershell` in its File Explorer address bar, and try again.
+- **The browser does not open:** Keep PowerShell running and open
+  <http://localhost:8501> in a browser.
+- **The page says it cannot connect:** Start the app with the command in
+  **Start the app again later** and leave the PowerShell window open.
+- **The workbook cannot be found:** Confirm that
+  `IT Hackathon Workbook.xlsx` is still in the same folder as `app.py`.
+
+## macOS or Linux setup
+
+Open a terminal and run:
 
 ```bash
-git clone git@github.com:ebrooksbgc/time_tracker_bgc.git
-cd time_tracker
+git clone https://github.com/ebrooksbgc/time_tracker_bgc.git
+cd time_tracker_bgc
 python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-python -m streamlit run app.py
+.venv/bin/python -m pip install --upgrade pip
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m streamlit run app.py
 ```
 
-Open the URL printed by Streamlit, normally <http://localhost:8501>.
-
-On first launch, the application creates a local `time_tracker.db` file and
-seeds the minimum data needed to use the app. The database is intentionally
-excluded from Git.
-
-To load the example data, open **Setup** in the web app and click
-**Import official hackathon workbook**. This imports the example partners,
-projects, and other reference data from the included workbook.
+Open <http://localhost:8501> if the browser does not open automatically. Then
+follow **Import the example partners and projects** above.
 
 ## Using the app
 
@@ -79,10 +152,6 @@ projects, and other reference data from the included workbook.
 4. Use **Timer** for live capture or **Setup** to manage employees, projects,
    tasks, and assignments.
 5. Review summaries in **Insights** and prior entries in **History**.
-
-The **Import official hackathon workbook** action uses
-`IT Hackathon Workbook.xlsx`, which is included as a runtime asset in this
-repository.
 
 ## Tests
 
