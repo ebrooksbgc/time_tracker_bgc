@@ -39,7 +39,7 @@ local use.
 ### Windows PowerShell
 
 ```powershell
-git clone <repository-url>
+git clone git@github.com:ebrooksbgc/time_tracker_bgc.git
 cd time_tracker
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1
@@ -51,7 +51,7 @@ python -m streamlit run app.py
 ### macOS or Linux
 
 ```bash
-git clone <repository-url>
+git clone git@github.com:ebrooksbgc/time_tracker_bgc.git
 cd time_tracker
 python3 -m venv .venv
 source .venv/bin/activate
