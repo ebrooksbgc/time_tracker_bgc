@@ -66,6 +66,10 @@ On first launch, the application creates a local `time_tracker.db` file and
 seeds the minimum data needed to use the app. The database is intentionally
 excluded from Git.
 
+To load the example data, open **Setup** in the web app and click
+**Import official hackathon workbook**. This imports the example partners,
+projects, and other reference data from the included workbook.
+
 ## Using the app
 
 1. Select a partner from **Work as partner**.
@@ -76,8 +80,9 @@ excluded from Git.
    tasks, and assignments.
 5. Review summaries in **Insights** and prior entries in **History**.
 
-The **Setup** view can import `IT Hackathon Workbook.xlsx`, which is included
-as a runtime asset in this repository.
+The **Import official hackathon workbook** action uses
+`IT Hackathon Workbook.xlsx`, which is included as a runtime asset in this
+repository.
 
 ## Tests
 
